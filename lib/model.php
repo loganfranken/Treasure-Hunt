@@ -52,7 +52,7 @@ class Model
 	 */
 	private static $dbName = 'DB_NAME';
 	
-    /**
+	/**
 	 * Determines if a treasure is buried in the specified location
 	 *
 	 * @param	float	$latitude	Latitude of the location to look for treasure
@@ -69,7 +69,7 @@ class Model
 		return ($treasure !== NULL);
 	}
 	
-    /**
+	/**
 	 * Digs for treasure in the specified location. If a treasure is found, the treasure is
 	 * returned and removed from that spot. Otherwise, NULL is returned
 	 *
@@ -114,7 +114,7 @@ class Model
 		return $treasure;
 	}
 	
-    /**
+	/**
 	 * Buries a treasure in the specified location
 	 *
 	 * @param	string	$itemName	Name of the treasure to bury
@@ -155,7 +155,7 @@ class Model
 		return $treasure;
 	}
 	
-    /**
+	/**
 	 * Maps the results of a database query to a Treasure object
 	 *
 	 * @param	array	$data	Results of a database query

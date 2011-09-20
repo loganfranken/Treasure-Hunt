@@ -66,13 +66,13 @@ abstract class Response
 	 */
 	public $data;
 	
-    /**
-     * Returns the response serialized as JSON
+	/**
+	 * Returns the response serialized as JSON
 	 *
-     * @return	string	Response serialized as JSON
-     *
-     * @access	public
-     */
+	 * @return	string	Response serialized as JSON
+	 *
+	 * @access	public
+	 */
 	public function __toString()
 	{
 		return json_encode($this);
