@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `treasure` (
   PRIMARY KEY (`treasure_id`),
   KEY `latitude` (`latitude`),
   KEY `longitude` (`longitude`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 DELIMITER $$
 --
