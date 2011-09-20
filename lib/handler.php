@@ -67,20 +67,20 @@ catch(Exception $ex)
  */
 class RequestHandler
 {
-    /**
-     * Handles requests to "bury" a treasure
-     *
-     * @param	string 		$itemName	Name of the treasure to bury
-     * @param	float  		$latitude	Latitude of the location to bury the treasure
-     * @param	float  		$longitude	Longitude of the location to bury the treasure
-     *
-     * @return	Response	Response describing the results of the bury request. If successful,
+	/**
+	 * Handles requests to "bury" a treasure
+	 *
+	 * @param	string	$itemName	Name of the treasure to bury
+	 * @param	float	$latitude	Latitude of the location to bury the treasure
+	 * @param	float	$longitude	Longitude of the location to bury the treasure
+	 *
+	 * @return	Response	Response describing the results of the bury request. If successful,
 	 *						a SuccessResponse only containing true is returned. If an error occurs,
 	 *						an ErrorResponse containing the error message is returned
-     *
-     * @access public
-     * @static
-     */
+	 *
+	 * @access	public
+	 * @static
+	 */
 	public static function handleBuryRequest($itemName, $latitude, $longitude)
 	{
 		// Validate
@@ -104,20 +104,20 @@ class RequestHandler
 	}
 
 	/**
-     * Handles requests to "dig" for a treasure
-     *
-     * @param	float  		$latitude  Latitude of the location to dig for the treasure
-     * @param	float  		$longitude Longitude of the location to dig for the treasure
-     *
-     * @return	Response	Response describing the results of the dig request. If successful,
+	 * Handles requests to "dig" for a treasure
+	 *
+	 * @param	float	$latitude	Latitude of the location to dig for the treasure
+	 * @param	float	$longitude	Longitude of the location to dig for the treasure
+	 *
+	 * @return	Response	Response describing the results of the dig request. If successful,
 	 *						a SuccessResponse containing the treasure is returned. If no treasure
 	 *						is found, a SuccessResponse is still returned, but it contains NULL.
 	 *						If an error occurs, an ErrorResponse containing the error message is
 	 *						returned
-     *
-     * @access public
-     * @static
-     */
+	 *
+	 * @access	public
+	 * @static
+	 */
 	public static function handleDigRequest($latitude, $longitude)
 	{
 		// Validate
@@ -140,20 +140,20 @@ class RequestHandler
 	}
 	
 	/**
-     * Handles requests to "search" for a treasure
-     *
-     * @param	float  		$latitude  Latitude of the location to bury the treasure
-     * @param	float  		$longitude Longitude of the location to bury the treasure
-     *
-     * @return	Response	Response describing the results of the search request. If successful,
+	 * Handles requests to "search" for a treasure
+	 *
+	 * @param	float	$latitude	Latitude of the location to bury the treasure
+	 * @param	float	$longitude	Longitude of the location to bury the treasure
+	 *
+	 * @return	Response	Response describing the results of the search request. If successful,
 	 *						a SuccessResponse containing a nearby treasure is returned. If no
 	 *						treasure is found, a SuccessResponse is still returned, but it contains
 	 *						NULL. If an error occurs, an ErrorResponse containing the error message
 	 *						is returned
-     *
-     * @access public
-     * @static
-     */
+	 *
+	 * @access	public
+	 * @static
+	 */
 	public static function handleSearchRequest($latitude, $longitude)
 	{
 		// Validate

@@ -15,31 +15,31 @@
  */
 class Request
 {
-    /**
-     * Retrieves a GET variable
-     *
-     * @param	string  $varName  Name of the GET variable
-     *
-     * @return	mixed	Value of the GET variable, or false if the GET variable is undefined
-     *
-     * @access public
-     * @static
-     */
+	/**
+	 * Retrieves a GET variable
+	 *
+	 * @param	string	$varName	Name of the GET variable
+	 *
+	 * @return	mixed	Value of the GET variable, or false if the GET variable is undefined
+	 *
+	 * @access	public
+	 * @static
+	 */
 	public static function getUrlVar($varName)
 	{
 		return isset($_GET[$varName]) ? $_GET[$varName] : false;
 	}
 	
-    /**
-     * Retrieves a POST variable
-     *
-     * @param	string  $varName  Name of the POST variable
-     *
-     * @return	mixed	Value of the POST variable, or false if the POST variable is undefined
-     *
-     * @access public
-     * @static
-     */
+	/**
+	 * Retrieves a POST variable
+	 *
+	 * @param	string	$varName	Name of the POST variable
+	 *
+	 * @return	mixed	Value of the POST variable, or false if the POST variable is undefined
+	 *
+	 * @access	public
+	 * @static
+	 */
 	public static function getPostVar($varName)
 	{
 		return isset($_POST[$varName]) ? $_POST[$varName] : false;
@@ -71,7 +71,7 @@ abstract class Response
 	 *
      * @return	string	Response serialized as JSON
      *
-     * @access public
+     * @access	public
      */
 	public function __toString()
 	{

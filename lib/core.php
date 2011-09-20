@@ -36,13 +36,13 @@ class Treasure
 	
 	/**
 	 * User's distance from the treasure
-	 * @var float
+	 * @var	float
 	 */
 	public $distance;
 	
 	/**
 	 * Longitude of the buried item's location
-	 * @var	@float
+	 * @var	float
 	 */
 	public $longitude;
 	

@@ -53,16 +53,16 @@ class Model
 	private static $dbName = 'DB_NAME';
 	
     /**
-     * Determines if a treasure is buried in the specified location
-     *
-     * @param	float  	$latitude  Latitude of the location to look for treasure
-     * @param	float  	$longitude Longitude of the location to look for treasure
-     *
-     * @return	bool	True if a treasure is buried in the specified location. False otherwise
-     *
-     * @access public
-     * @static
-     */
+	 * Determines if a treasure is buried in the specified location
+	 *
+	 * @param	float	$latitude	Latitude of the location to look for treasure
+	 * @param	float	$longitude	Longitude of the location to look for treasure
+	 *
+	 * @return	bool	True if a treasure is buried in the specified location. False otherwise
+	 *
+	 * @access	public
+	 * @static
+	 */
 	public static function isTreasureBuried($latitude, $longitude)
 	{
 		$treasure = self::getTreasure($latitude, $longitude, self::DIG_DISTANCE);
@@ -70,18 +70,18 @@ class Model
 	}
 	
     /**
-     * Digs for treasure in the specified location. If a treasure is found, the treasure is
+	 * Digs for treasure in the specified location. If a treasure is found, the treasure is
 	 * returned and removed from that spot. Otherwise, NULL is returned
-     *
-     * @param	float  		$latitude  Latitude of the location to dig for treasure
-     * @param	float  		$longitude Longitude of the location to dig for treasure
-     *
-     * @return	Treasure	The treasure, if a treasure is found in the specified location.
+	 *
+	 * @param	float	$latitude	Latitude of the location to dig for treasure
+	 * @param	float	$longitude	Longitude of the location to dig for treasure
+	 *
+	 * @return	Treasure	The treasure, if a treasure is found in the specified location.
 	 *						Otherwise, NULL is returned
-     *
-     * @access public
-     * @static
-     */
+	 *
+	 * @access	public
+	 * @static
+	 */
 	public static function digForTreasure($latitude, $longitude)
 	{
 		$treasure = self::getTreasure($latitude, $longitude, self::DIG_DISTANCE);
@@ -96,18 +96,18 @@ class Model
 	}
 	
 	/**
-     * Searches for treasure around the specified location. If a nearby treasure is found, the
+	 * Searches for treasure around the specified location. If a nearby treasure is found, the
 	 * treasure is returned. Otherwise, NULL is returned
-     *
-     * @param	float  		$latitude  Latitude of the location to search for treasure
-     * @param	float  		$longitude Longitude of the location to search for treasure
-     *
-     * @return	Treasure	The treasure, if a treasure is found nearby the specified location.
+	 *
+	 * @param	float	$latitude	Latitude of the location to search for treasure
+	 * @param	float	$longitude	Longitude of the location to search for treasure
+	 *
+	 * @return	Treasure	The treasure, if a treasure is found nearby the specified location.
 	 *						Otherwise, NULL is returned
-     *
-     * @access public
-     * @static
-     */
+	 *
+	 * @access	public
+	 * @static
+	 */
 	public static function searchForTreasure($latitude, $longitude)
 	{
 		$treasure = self::getTreasure($latitude, $longitude, self::SEARCH_DISTANCE);	
@@ -115,36 +115,36 @@ class Model
 	}
 	
     /**
-     * Buries a treasure in the specified location
-     *
-     * @param	string 		$itemName	Name of the treasure to bury
-     * @param	float  		$latitude	Latitude of the location to bury the treasure
-     * @param	float  		$longitude	Longitude of the location to bury the treasure
-     *
-     * @return	void
-     *
-     * @access public
-     * @static
-     */
+	 * Buries a treasure in the specified location
+	 *
+	 * @param	string	$itemName	Name of the treasure to bury
+	 * @param	float	$latitude	Latitude of the location to bury the treasure
+	 * @param	float	$longitude	Longitude of the location to bury the treasure
+	 *
+	 * @return	void
+	 *
+	 * @access	public
+	 * @static
+	 */
 	public static function buryTreasure($itemName, $latitude, $longitude)
 	{
 		self::executeNonQuery('add_treasure', array($itemName, $latitude, $longitude));
 	}
 	
 	/**
-     * Searches for treasure around the specified location within the specified distance. If a
+	 * Searches for treasure around the specified location within the specified distance. If a
 	 * nearby treasure is found, the treasure is returned. Otherwise, NULL is returned
-     *
-     * @param	float  		$latitude  	Latitude of the location to search for treasure
-     * @param	float  		$longitude 	Longitude of the location to search for treasure
-	 * @param	float		$distance	Search distance
-     *
-     * @return	Treasure	The treasure, if a treasure is found nearby the specified location
+	 *
+	 * @param	float	$latitude	Latitude of the location to search for treasure
+	 * @param	float	$longitude	Longitude of the location to search for treasure
+	 * @param	float	$distance	Search distance
+	 *
+	 * @return	Treasure	The treasure, if a treasure is found nearby the specified location
 	 *						within the specified distance. Otherwise, NULL is returned
-     *
-     * @access public
-     * @static
-     */
+	 *
+	 * @access	public
+	 * @static
+	 */
 	public static function getTreasure($latitude, $longitude, $distance)
 	{
 		$data = self::executeQuery('get_treasure',
@@ -156,15 +156,15 @@ class Model
 	}
 	
     /**
-     * Maps the results of a database query to a Treasure object
-     *
-     * @param	array 		$data	Results of a database query
-     *
-     * @return	Treasure	Mapped Treasure object
-     *
-     * @access	private
-     * @static
-     */
+	 * Maps the results of a database query to a Treasure object
+	 *
+	 * @param	array	$data	Results of a database query
+	 *
+	 * @return	Treasure	Mapped Treasure object
+	 *
+	 * @access	private
+	 * @static
+	 */
 	private static function mapTreasure($data)
 	{
 		$treasure = ($data)
@@ -175,16 +175,16 @@ class Model
 	}
 
 	/**
-     * Executes a stored procedure that does not return results
-     *
-     * @param	string		$procName	Name of the stored procedure
-	 * @param	array		$args		Arguments for the stored procedure
-     *
-     * @return	void
-     *
-     * @access	private
-     * @static
-     */
+	 * Executes a stored procedure that does not return results
+	 *
+	 * @param	string	$procName	Name of the stored procedure
+	 * @param	array	$args		Arguments for the stored procedure
+	 *
+	 * @return	void
+	 *
+	 * @access	private
+	 * @static
+	 */
 	private static function executeNonQuery($procName, $args)
 	{
 		$db = self::getConnection();
@@ -194,16 +194,16 @@ class Model
 	}
 	
 	/**
-     * Executes a stored procedure that returns results
-     *
-     * @param	string		$procName	Name of the stored procedure
-	 * @param	array		$args		Arguments for the stored procedure
-     *
-     * @return	array		Results of the stored procedure
-     *
-     * @access	private
-     * @static
-     */
+	 * Executes a stored procedure that returns results
+	 *
+	 * @param	string	$procName	Name of the stored procedure
+	 * @param	array	$args		Arguments for the stored procedure
+	 *
+	 * @return	array	Results of the stored procedure
+	 *
+	 * @access	private
+	 * @static
+	 */
 	private static function executeQuery($procName, $args)
 	{
 		$db = self::getConnection();
@@ -236,30 +236,30 @@ class Model
 	}
 	
 	/**
-     * Returns a "connection" to the database
-     *
-     * @return	MySQLI	Object for communicating with the database
-     *
-     * @access	private
-     * @static
-     */
+	 * Returns a "connection" to the database
+	 *
+	 * @return	MySQLI	Object for communicating with the database
+	 *
+	 * @access	private
+	 * @static
+	 */
 	private static function getConnection()
 	{
 		return new MySQLI(self::$dbHost, self::$dbUser, self::$dbPass, self::$dbName);
 	}
 
 	/**
-     * Builds an argument list for a stored procedure in MySQL, escaping the arguments, surrounding
+	 * Builds an argument list for a stored procedure in MySQL, escaping the arguments, surrounding
 	 * the arguments in single quotes, and delimiting the argument list with commas
-     *
-     * @param	MySQLI		$mysqli		MySQLI object (used for escaping parameters)
-	 * @param	array		$args		Arguments for the stored procedure
-     *
-     * @return	string	List of arguments, prepared for stored procedure call
-     *
-     * @access	private
-     * @static
-     */	
+	 *
+	 * @param	MySQLI	$mysqli	MySQLI object (used for escaping parameters)
+	 * @param	array	$args	Arguments for the stored procedure
+	 *
+	 * @return	string	List of arguments, prepared for stored procedure call
+	 *
+	 * @access	private
+	 * @static
+	 */	
 	private static function buildArgs($mysqli, $args)
 	{
 		foreach ($args as $a)
