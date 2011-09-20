@@ -1,0 +1,10 @@
+.status
+{
+	display: none;
+	font-weight: bold;
+}
+
+.error, form.form-full > p.error
+{
+	color: #C00;
+}
