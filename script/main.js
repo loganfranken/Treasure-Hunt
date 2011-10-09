@@ -3,6 +3,9 @@
  */
 var TREASUREHUNT = {};
 
+TREASUREHUNT.MIN_ACCURACY = 20;
+TREASUREHUNT.GEO_TIMEOUT = 300000; // 5 minutes
+
 /**
  * Creates a new Treasure Hunt View
  * @class	Manages UI operations for the Treasure Hunt interface
@@ -124,7 +127,8 @@ TREASUREHUNT.Controller.prototype.handleDigRequest = function() {
 	self.view.showStatus('Digging...', false);
 	
 	// Retrieve location
-	mwf.touch.geolocation.getPosition(
+	mwf.touch.geolocation.getExactPosition(
+		TREASUREHUNT.MIN_ACCURACY, TREASUREHUNT.GEO_TIMEOUT,
 		function(pos) {
 		
 			// Send dig request
@@ -157,7 +161,8 @@ TREASUREHUNT.Controller.prototype.handleDigRequest = function() {
 		function(err) {
 		
 			// Retrieving location failed
-			self.view.showStatus('Digging failed. Geolocation isn\'t enabled', true);
+			self.view.showStatus('Digging failed. Either geolocation isn\'t enabled or an '
+									+ 'accurate position could not be determined', true);
 			return;
 			
 		}
@@ -175,7 +180,8 @@ TREASUREHUNT.Controller.prototype.handleSearchRequest = function() {
 	self.view.showStatus('Searching...', false);
 	
 	// Retrieve location
-	mwf.touch.geolocation.getPosition(
+	mwf.touch.geolocation.getExactPosition(
+		TREASUREHUNT.MIN_ACCURACY, TREASUREHUNT.GEO_TIMEOUT,
 		function(pos) {
 			
 			// Send search request
@@ -222,7 +228,8 @@ TREASUREHUNT.Controller.prototype.handleSearchRequest = function() {
 		function(err) {
 		
 			// Retrieving location failed
-			self.view.showStatus('Searching failed. Geolocation isn\'t enabled', true);
+			self.view.showStatus('Searching failed. Either geolocation isn\'t enabled or an '
+									+ 'accurate position could not be determined', true);
 			return;
 			
 		}
@@ -256,7 +263,8 @@ TREASUREHUNT.Controller.prototype.handleBuryRequest = function() {
 	self.view.showStatus('Burying...', false);
 	
 	// Retrieve location
-	mwf.touch.geolocation.getPosition(
+	mwf.touch.geolocation.getExactPosition(
+		TREASUREHUNT.MIN_ACCURACY, TREASUREHUNT.GEO_TIMEOUT,
 		function(pos) {
 		
 			// Send bury request
@@ -280,11 +288,63 @@ TREASUREHUNT.Controller.prototype.handleBuryRequest = function() {
 		function(err) {
 		
 			// Retrieving location failed
-			self.view.showStatus('Burying failed. Geolocation isn\'t enabled', true);
+			self.view.showStatus('Burying failed. Either geolocation isn\'t enabled or an '
+									+ 'accurate position could not be determined', true);
 			return;
 			
 		}
 	);
+};
+
+/**
+ * Returns the position of the User within the specified accuracy
+ * @param	{Number}	minAccuracy	Minimum accuracy (in meters) of the geolocation response
+ * @param	{Number}	timeout		Maximum time (in milliseconds) that should be spent polling for
+ *									the User's location. If the User's location can not be
+ *									determined within this time, an error response will be returned
+ * @param	{Function}	onSuccess	Function to call on successful retrieval of User's position
+ * @param	{Function}	onError		Function to call if an error occurs
+ */
+mwf.touch.geolocation.getExactPosition = function(minAccuracy, timeout, onSuccess, onError) {
+	
+	var geo;
+	
+	switch(this.getType())
+	{
+		case 1:
+			geo = navigator.geolocation;
+			break;
+		case 2:
+			geo = google.gears.factory.create('beta.geolocation');
+			break;
+		default:
+			onError && onError('No geolocation support available.');
+			return;
+	}
+
+	var watchID = geo.watchPosition(
+		function(position) {
+		
+			if(position.coords.accuracy <= minAccuracy) {
+				navigator.geolocation.clearWatch(watchID);
+				onSuccess && onSuccess({
+					'latitude': position.coords.latitude,
+					'longitude': position.coords.longitude,
+					'accuracy': position.coords.accuracy
+				});
+			}
+	
+		},
+		function() {
+			onError && onError('Google Gears Geolocation failure.');
+		},
+		{
+			enableHighAccuracy: true,
+			timeout: timeout
+		}
+	);
+
+	return true;
 };
 
 $(function() {
