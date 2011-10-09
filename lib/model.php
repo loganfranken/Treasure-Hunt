@@ -19,14 +19,14 @@ class Model
 	 * Distance (in feet) that a User has to be within to successfully dig up a treasure
 	 * @var	integer
 	 */
-	const DIG_DISTANCE = 4;
+	const DIG_DISTANCE = 20;
 	
 	/**
 	 * Distance (in feet) that a User has to be within to successfully find a treasure during
 	 * a search
 	 * @var	integer
 	 */
-	const SEARCH_DISTANCE = 30;
+	const SEARCH_DISTANCE = 50;
 
 	/**
 	 * Database host
