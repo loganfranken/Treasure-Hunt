@@ -219,7 +219,7 @@ class Model
 			$result->free();
 			
 			// Free results
-			while ($db->next_result())
+			while ($db->more_results() && $db->next_result())
 			{
 				$result = $db->use_result();
 				
